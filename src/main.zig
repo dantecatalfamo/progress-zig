@@ -1,14 +1,6 @@
 const std = @import("std");
 const testing = std.testing;
 
-export fn add(a: i32, b: i32) i32 {
-    return a + b;
-}
-
-test "basic add functionality" {
-    try testing.expect(add(3, 7) == 10);
-}
-
 pub const Progress = struct {
     fn Typed(comptime Writer: type) type {
         return struct {
@@ -57,7 +49,7 @@ pub const Progress = struct {
                 }
 
                 if (self.display_fraction) {
-                    try self.writer.print(" {d}/{d}", .{self.progress, self.total});
+                    try self.writer.print(" {d}/{d}", .{ self.progress, self.total });
                 }
 
                 if (self.display_percentage) {
