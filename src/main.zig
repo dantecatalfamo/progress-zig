@@ -1,4 +1,5 @@
 const std = @import("std");
+const time = std.time;
 const testing = std.testing;
 
 pub const Progress = struct {
@@ -86,5 +87,18 @@ pub const Progress = struct {
 test "initialization" {
     var stdout = std.io.getStdOut().writer();
     var bar = Progress.init(stdout);
+}
+
+test "display bar" {
+    var stdout = std.io.getStdOut().writer();
+    var bar = Progress.init(stdout);
+    bar.total = 300;
+    bar.width = 50;
+    bar.display_fraction = true;
+    try stdout.writeByte('\n');
     try bar.draw();
+    while (try bar.next()) |_| {
+        time.sleep(time.ns_per_ms * 5);
+    }
+    try stdout.writeByte('\n');
 }
