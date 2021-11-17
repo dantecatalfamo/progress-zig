@@ -53,7 +53,11 @@ pub const Progress = struct {
                 }
 
                 if (self.display_percentage) {
-                    try self.writer.print(" {d:.0}%", .{percent * 100});
+                    if (percent == 0.0) {
+                        try self.writer.print(" 0%", .{});
+                    } else {
+                        try self.writer.print(" {d:.0}%", .{percent * 100});
+                    }
                 }
             }
 
