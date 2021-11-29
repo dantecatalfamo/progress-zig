@@ -11,10 +11,12 @@ var stdout = std.io.getStdOut().writer();
 var bar = Progress.init(stdout); // Initiate the bar using a writer
 try bar.draw() // Draw the current status of the progress bar.
 _ = try bar.next() // Increment the progress by 1.
-                   // Returns the current progress or `null` if complete. Re-renders the bar
+                   // Returns the current progress or `null` if complete. 
+                   // Re-renders the progress bar.
 const step = 3;
 _ = try bar.increment(step) // Increment the progress by `step`. 
-                            // Returns the current progress or `null` if complete. Re-renders the bar.
+                            // Returns the current progress or `null` if complete. 
+                            // Re-renders the progress bar.
 ```
 
 ## Options
