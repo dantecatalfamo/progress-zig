@@ -25,6 +25,7 @@ fn Typed(comptime Writer: type) type {
             return .{ .writer = writer };
         }
 
+        /// Draw the current status of the progress bar.
         pub fn draw(self: *Self) !void {
             if (self.progress > self.total)
                 self.progress = self.total;

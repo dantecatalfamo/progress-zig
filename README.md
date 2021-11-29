@@ -8,7 +8,13 @@ Simple progress bar in zig.
 const Progress = @import("progress");
 
 var stdout = std.io.getStdOut().writer();
-var bar = Progress.init(stdout);
+var bar = Progress.init(stdout); // Initiate the bar using a writer
+try bar.draw() // Draw the current status of the progress bar.
+_ = try bar.next() // Increment the progress by 1.
+                   // Returns the current progress or `null` if complete. Re-renders the bar
+const step = 3;
+_ = try bar.increment(step) // Increment the progress by `step`. 
+                            // Returns the current progress or `null` if complete. Re-renders the bar.
 ```
 
 ## Options
@@ -36,6 +42,7 @@ var stdout = std.io.getStdOut().writer();
 var bar = Progress.init(stdout);
 bar.total = 300;
 bar.width = 50;
+bar.display_fraction = true;
 while (try bar.next()) |_| {
     time.sleep(time.ns_per_ms * 5);
 }
