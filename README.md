@@ -5,6 +5,7 @@ Simple progress bar in zig.
 ## Interface
 
 ```zig
+const std = @import("std");
 const Progress = @import("progress");
 
 var stdout = std.io.getStdOut().writer();
